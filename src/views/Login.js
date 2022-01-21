@@ -3,10 +3,12 @@ import { Alert } from 'evergreen-ui';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { BsGoogle, BsFacebook, BsTwitch, BsBookmarkX } from 'react-icons/bs';
+import { useHistory } from 'react-router-dom';
 import { Link, Redirect } from 'react-router-dom';
 
 
 const Login = () => {
+    const history = useHistory();
     const login = useStoreActions(actions => actions.user.login);
     const message = useStoreState(state => state.user.message);
     const setMessage = useStoreActions(actions => actions.user.setMessage);
@@ -75,8 +77,7 @@ const Login = () => {
                         </button>
                     </Link>
 
-
-                    {userState == true && <Redirect to='/Dashboard' />}
+                    {userState && <Redirect to='/dashboard' />}
                 </div>
             </div>
         </div>

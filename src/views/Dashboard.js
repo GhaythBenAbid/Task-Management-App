@@ -3,23 +3,17 @@ import { useEffect } from "react";
 import NavBar from "./Navbar";
 
 const Dashboard = () => {
-    const x = [1, 2, 3, 4];
+    const getAllCollections = useStoreActions(actions => actions.collection.getAllCollections);
+    const collections = useStoreState(state => state.collection.collections);
+    const getCollectionsByUserId = useStoreActions(actions => actions.collection.getCollectionsByUserId);
     const user = useStoreState(state => state.user.user);
-    const collections = useStoreState(state => state.user.collections);
-    const getAllCollections = useStoreActions(actions => actions.user.getAllCollections);
-    const getCollectionsByUserId = useStoreActions(actions => actions.user.getCollectionsByUserId);
-    const getAllUser = useStoreActions(actions => actions.user.getAllUser);
 
-
-
+    const id = user._id;
 
     useEffect(() => {
-        getAllCollections();
-
-
-
-
-    }, [])
+        getCollectionsByUserId({id});
+        
+    }, [user]);
 
 
     const listofcolors = [
@@ -37,12 +31,11 @@ const Dashboard = () => {
     return (
 
         <div class="flex flex-col h-screen bg-gray-100">
-            {user._id}
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
             <NavBar />
             <div class="bg-gradient-to-t from-gray-900 to-gray-800 w-60 flex flex-col flex-grow shadow-md">
                 <h1 className="text-white pt-8 font-bold text-2xl px-5 mb-8">Collections</h1>
-                {/* {collections.map(function (item, index) {
+                {collections.map(function (item, index) {
 
                     var randomnumber = Math.floor(Math.random() * 6);
                     return (
@@ -53,7 +46,7 @@ const Dashboard = () => {
                             <h1 className="text-white font-bold italic">{item.collection_name}</h1>
                         </div>
                     )
-                })} */}
+                })}
 
 
             </div>

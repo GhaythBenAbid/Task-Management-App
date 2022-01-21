@@ -1,4 +1,4 @@
-const { action, thunk, persist, useStoreState } = require("easy-peasy");
+const { action, thunk, persist } = require("easy-peasy");
 const axios = require("axios");
 
 var store = {
@@ -11,9 +11,8 @@ var store = {
         actions.setCollections(data);
     }),
 
-    getCollectionsByUserId : thunk(async (actions) => {
-        const user = useStoreState(state => state.user.user);
-        const response = await axios.get("http://localhost:5000/api/collection/" + user._id);
+    getCollectionsByUserId : thunk(async (actions , {id}) => {
+        const response = await axios.get("http://localhost:5000/api/collection/" + id);
         const data = await response.data;
         console.log(data);
         actions.setCollections(data);

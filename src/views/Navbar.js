@@ -1,7 +1,10 @@
-import { useStoreState } from "easy-peasy";
+import { useStoreActions, useStoreState } from "easy-peasy";
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 
 const navigation = [
     { name: 'Dashboard', href: '#', current: true },
@@ -16,13 +19,16 @@ function classNames(...classes) {
 
 
 const NavBar = () => {
+    const history = useHistory();
     const user = useStoreState(state => state.user.user);
+    const setUserState = useStoreActions(state => state.user.setUserState);
+    const userState = useStoreState(state => state.user.userState);
 
     return (
         <Disclosure as="nav" className="bg-gray-800">
             {({ open }) => (
                 <>
-                    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                    <div className=" mx-auto px-2 sm:px-6 lg:px-8">
                         <div className="relative flex items-center justify-between h-16">
                             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                                 {/* Mobile menu button*/}
@@ -119,12 +125,16 @@ const NavBar = () => {
                                             </Menu.Item>
                                             <Menu.Item>
                                                 {({ active }) => (
-                                                    <a
-                                                        href="#"
+                                                    <button
+                                                        onClick={() => {
+                                                            setUserState(false);
+                                                            history.push('/login');
+                                                        }}
                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                     >
                                                         Sign out
-                                                    </a>
+                                                    </button>
+
                                                 )}
                                             </Menu.Item>
                                         </Menu.Items>
@@ -155,6 +165,8 @@ const NavBar = () => {
                 </>
             )}
         </Disclosure>
+
+
     );
 }
 

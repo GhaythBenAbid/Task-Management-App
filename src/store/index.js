@@ -6,8 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 const store = createStore({
-    user : persist(user),  
-    collection : persist(collection), 
+    user : persist(user , { storage : 'localStorage' }),  
+    collection : persist(collection , { storage : 'localStorage' }), 
 
     
 });
