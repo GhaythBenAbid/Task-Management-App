@@ -7,8 +7,8 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 const Register = () => {
-    const register = useStoreActions(actions => actions.register);
-    const message = useStoreState(state => state.message);
+    const register = useStoreActions(actions => actions.user.register);
+    const message = useStoreState(state => state.user.message);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

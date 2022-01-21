@@ -7,9 +7,10 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 const Login = () => {
-    const login = useStoreActions(actions => actions.login);
-    const message = useStoreState(state => state.message);
-    const setMessage = useStoreActions(actions => actions.setMessage);
+    const login = useStoreActions(actions => actions.user.login);
+    const message = useStoreState(state => state.user.message);
+    const setMessage = useStoreActions(actions => actions.user.setMessage);
+    const userState = useStoreState(state => state.user.userState);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,9 +30,9 @@ const Login = () => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam molestiae odio nobis! Aperiam alias molestiae aliquam beatae nihil fuga amet reprehenderit dignissimos omnis quibusdam inventore quidem nostrum corporis consectetur accusantium illo fugit voluptas in nam, officia fugiat laudantium asperiores. Ab quam molestiae nihil explicabo unde vel maiores mollitia deserunt dolores nobis ipsum quidem fugit, consectetur, aperiam voluptatibus harum repudiandae architecto magnam consequatur, voluptas saepe. Possimus esse dolorum cum nihil! Labore quia, ipsam culpa iusto placeat doloremque porro, cupiditate fuga quas a pariatur officia. Odit adipisci commodi quia molestias illum minima?</h1>
             </div>
             <div className='text-center flex flex-col justify-center'>
-                {message.message === "User not found" ? <Alert className='w-3/4 mx-auto mb-8' title={message.message} intent='danger' /> : null}
-                {message.message === "Incorrect password" ? <Alert className='w-3/4 mx-auto mb-8' title={message.message} intent='danger' /> : null}
-                {message.message === "User found" ? <Alert className='w-3/4 mx-auto mb-8' title={message.message} /> : null}
+                {message === "User not found" ? <Alert className='w-3/4 mx-auto mb-8' title={message} intent='danger' /> : null}
+                {message === "Incorrect password" ? <Alert className='w-3/4 mx-auto mb-8' title={message} intent='danger' /> : null}
+                {message === "User found" ? <Alert className='w-3/4 mx-auto mb-8' title={message} /> : null}
                 <h1 className='text-4xl font-bold text-gray-800 mb-8'>Sign in to Clever</h1>
                 <div className='flex flex-row justify-center mb-8'>
                     <div className='bg-gray-100 w-16 h-16 mx-5 rounded-lg drop-shadow-sm flex flex-row justify-center items-center'>
@@ -75,7 +76,7 @@ const Login = () => {
                     </Link>
 
 
-                    {message === "User found" && <Redirect to='/Dashboard' />}
+                    {userState == true && <Redirect to='/Dashboard' />}
                 </div>
             </div>
         </div>

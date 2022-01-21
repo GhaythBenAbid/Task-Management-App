@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { StoreProvider } from 'easy-peasy';
-import store from './store/user';
-
+import store from './store/index';
+// import store from './store/test';
+// import store from './store/user';
 
 ReactDOM.render(
   <React.StrictMode>
