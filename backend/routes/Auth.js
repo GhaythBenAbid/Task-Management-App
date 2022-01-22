@@ -55,6 +55,16 @@ router.get('/', (req, res) => {
     });
 });
 
+//delete user
+router.delete('/:id', (req, res) => {
+    client.remove({_id: req.params.id}, (err, user) => {
+        if(err) {
+            res.send(err);
+        }
+        res.json({message: 'User deleted'});
+    });
+});
+
 
 
 

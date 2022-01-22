@@ -1,5 +1,6 @@
 //create user schema
 var mongoose = require('mongoose');
+const Collection = require('./Collection');
 var Schema = mongoose.Schema;
 
 
@@ -18,6 +19,16 @@ var clientSchema = new Schema({
         type: String,
         required: true
     },
+});
+
+//delete collection when user is deleted
+clientSchema.pre('remove', function (next) {
+    Collection.deleteMany({ client_id: this._id }, function (err) {
+        if (err) {
+            next(err);
+        }
+    });
+    next();
 });
 
 

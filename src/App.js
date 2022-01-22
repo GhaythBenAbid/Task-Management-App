@@ -3,7 +3,7 @@ import { BrowserRouter as Router , Route , Switch } from 'react-router-dom'
 import Login from './views/Login';
 import Register from './views/Register';
 import Dashboard from './views/Dashboard';
-import RandomData from './views/random';
+import AddNewCollection from './views/AddNewCollection';
 
 function App() {
 
@@ -12,8 +12,8 @@ function App() {
     <Router>
       <div className='App'>
         <Switch>
-          <Route path={"/random"}>
-            <RandomData />
+          <Route path={"/addNewCollection"}>
+            <AddNewCollection />
           </Route>
           <Route path={"/Dashboard"}>
             <Dashboard />
