@@ -4,6 +4,8 @@ import Login from './views/Login';
 import Register from './views/Register';
 import Dashboard from './views/Dashboard';
 import AddNewCollection from './views/AddNewCollection';
+import ListCollections from './views/ListCollections';
+import Hello from './views/Hello';
 
 function App() {
 
@@ -12,6 +14,12 @@ function App() {
     <Router>
       <div className='App'>
         <Switch>
+          <Route path={"/collection/:id"}>
+            <Hello />
+          </Route>
+          <Route path={"/collections"}>
+            <ListCollections />
+          </Route>
           <Route path={"/addNewCollection"}>
             <AddNewCollection />
           </Route>

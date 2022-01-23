@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 
 const navigation = [
-    { name: 'Dashboard', href: '/addNewCollection', current: true },
+    { name: 'Collections', href: '/collections', current: true },
     { name: 'Team', href: '#', current: false },
     { name: 'Projects', href: '#', current: false },
     { name: 'Calendar', href: '#', current: false },

@@ -38,6 +38,8 @@ const SideBar = () => {
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
                 <h1 className="text-white pt-8 font-bold text-2xl px-5 mb-8">Collections</h1>
+                
+                
                 {collections.map(function (item, index) {
 
                     var randomnumber = Math.floor(Math.random() * 6);
@@ -47,8 +49,8 @@ const SideBar = () => {
                                 <i class={`fa-solid ${item.icon} text-white`}></i>
                             </div>
                             {item.collection_name.length < 20 ?
-                            
                             <h1 className="text-white font-bold italic">{item.collection_name}</h1> : 
+                            
                             <h1 className="text-white font-bold italic">{item.collection_name.slice(0,15)}...</h1> 
 
                         }
